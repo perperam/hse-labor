@@ -8,6 +8,11 @@
 #include "moving_avg.h"
 
 void initializeMovingAverage(MovingAverage *ma, int windowSize) {
+	// cut of when to big for static struct array
+    if (windowSize > MAX_WINDOW_SIZE) {
+        windowSize = MAX_WINDOW_SIZE;
+    }
+
     ma->size = windowSize;
     ma->index = 0;
     ma->sum = 0.0;

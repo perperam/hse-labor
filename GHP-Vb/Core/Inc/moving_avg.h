@@ -8,6 +8,9 @@
 #ifndef MOVING_AVG_H_
 #define MOVING_AVG_H_
 
+// needed, because struct array is not dynamic
+#define MAX_WINDOW_SIZE 10
+
 typedef struct {
     double buffer[MAX_WINDOW_SIZE];
     int size;
