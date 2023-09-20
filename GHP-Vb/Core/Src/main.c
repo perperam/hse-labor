@@ -63,12 +63,6 @@ static void MX_TIM1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint32_t value_adc;
-
-MovingAverage ma;
-unit32_t windowSize = 5; // Can be changes as liked
-
-initializeMovingAverage(&ma, windowSize);
 
 /* USER CODE END 0 */
 
@@ -106,6 +100,14 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   HAL_ADC_Start(&hadc1);
+  uint32_t valueADC;
+
+  MovingAverage ma;
+  uint32_t windowSize = 5; // Can be changes as liked
+
+  initializeMovingAverage(&ma, windowSize);
+
+  double movingAvg;
 
   /* USER CODE END 2 */
 
@@ -115,23 +117,12 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-
-	  // Add some data points and calculate the moving average
-	  double data[] = {10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0};
-	  int dataSize = sizeof(data) / sizeof(data[0]);
-
-	  for (int i = 0; i < dataSize; i++) {
-		  double movingAvg = calculateMovingAverage(&ma, data[i]);
-		  printf("Data: %.1lf, Moving Average: %.2lf\n", data[i], movingAvg);
-	  }
-
-
-
-
 	  HAL_ADC_PollForConversion(&hadc1, 1000);
-	  value_adc = HAL_ADC_GetValue(&hadc1);
+	  valueADC = HAL_ADC_GetValue(&hadc1);
 
-	  if (value_adc < 2028) {
+	  movingAvg = calculateMovingAverage(&ma, valueADC);
+
+	  if (movingAvg < 2028) {
 		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
 	  } else {
 		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
