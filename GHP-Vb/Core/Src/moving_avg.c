@@ -8,9 +8,6 @@
 #include "moving_avg.h"
 
 void initializeMovingAverage(MovingAverage *ma, int windowSize) {
-    if (windowSize > MAX_WINDOW_SIZE) {
-        windowSize = MAX_WINDOW_SIZE;
-    }
     ma->size = windowSize;
     ma->index = 0;
     ma->sum = 0.0;

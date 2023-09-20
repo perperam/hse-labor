@@ -8,8 +8,6 @@
 #ifndef MOVING_AVG_H_
 #define MOVING_AVG_H_
 
-#define MAX_WINDOW_SIZE 10
-
 typedef struct {
     double buffer[MAX_WINDOW_SIZE];
     int size;
@@ -18,7 +16,7 @@ typedef struct {
 } MovingAverage;
 
 void initializeMovingAverage(MovingAverage *ma, int windowSize);
-double calculateMovingAverage(MovingAverage *ma, double newData);
+double calculateMovingAverage(MovingAverage *ma, int newData);
 
 
 #endif /* MOVING_AVG_H_ */
