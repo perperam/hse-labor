@@ -103,7 +103,7 @@ int main(void)
   uint32_t valueADC;
 
   MovingAverage ma;
-  uint32_t windowSize = 5; // Can be changes as liked
+  uint32_t windowSize = 128; // HEADER FILE MAX SIZE MATTERS!
 
   initializeMovingAverage(&ma, windowSize);
 
