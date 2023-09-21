@@ -116,16 +116,22 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 
 	  HAL_ADC_PollForConversion(&hadc1, 1000);
 	  valueADC = HAL_ADC_GetValue(&hadc1);
 
 	  movingAvg = calculateMovingAverage(&ma, valueADC);
 
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, (int) movingAvg);
+
 	  if (movingAvg < 2028) {
 		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
+
 	  } else {
 		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+
+
 	  }
     /* USER CODE BEGIN 3 */
   }
