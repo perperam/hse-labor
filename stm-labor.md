@@ -17,7 +17,9 @@
 - Erst ab einer Periodendauer von ca. 60ms also einer Counter Period von 60000 kann das Auge das Flackern sehen
 
 ## Aufgabenteil D
-- Das Entprellen kan mittels RC-Filter oder Schmitt-Trigger erreicht werden. 
-- Rising Edge > Trigger beim loslassen des blauen Tasters
-- Falling Edge > Trigger beim drücken des blauen Tasters
+- Das Entprellen kan mittels RC-Filter oder Schmitt-Trigger erreicht werden.
+Annahmen: Highacitve logic und Taster schließt beim drücken 
+
+- Rising Edge > Trigger beim loslassen des blauen Tasters (Pull-Up Widerstand)
+- Falling Edge > Trigger beim drücken des blauen Tasters (Pull-Up Widerstand)
 
